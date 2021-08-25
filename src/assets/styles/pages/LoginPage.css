@@ -1,27 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 body {
   background-color: #0e0d0d;
   color: #FF5733;
-}
+  font-family: 'Roboto', sans-serif; }
 
 .login-form-container {
   margin: auto;
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-}
+  justify-content: center; }
 
 .login-form {
   width: 70vw;
   height: 80%;
   display: flex;
   flex-direction: column;
-}
+  border: 2px solid white;
+  border-radius: 40px; }
 
 .login-form__legend {
   font-weight: bold;
-  font-size: 30px;
-}
+  font-size: 30px; }
 
 .login-login-fieldset {
   height: 80%;
@@ -32,8 +32,7 @@ body {
   border: none;
   margin: 0;
   background: #55555555;
-  border-radius: 10px 10px 0 0;
-}
+  border-radius: 40px 40px 0 0; }
 
 .login-signup-fieldset {
   height: 20%;
@@ -42,13 +41,11 @@ body {
   flex-direction: column;
   background: #55555555;
   margin: 0;
-  border-radius: 0 0 10px 10px;
-}
+  border-radius: 0 0 40px 40px; }
 
 .login-input-container {
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .login-form__submit, .login-form__signup {
   height: 40px;
@@ -61,17 +58,14 @@ body {
   font-weight: bold;
   font-size: 20px;
   cursor: pointer;
-  transition: background-color 200ms;
-}
+  transition: background-color 200ms; }
 
 .login-form__submit:hover, .login-form__signup:hover {
-  background-color: #c34225;
-}
+  background-color: #c34225; }
 
 .login-input__label {
   font-weight: bold;
-  font-size: 20px;
-}
+  font-size: 20px; }
 
 .login-input__input {
   height: 20px;
@@ -84,6 +78,6 @@ body {
   outline: none;
   font-size: 20px;
   width: calc(100% - 5px);
-}
+  font-family: 'Roboto', sans-serif; }
 
 /*# sourceMappingURL=LoginPage.css.map */

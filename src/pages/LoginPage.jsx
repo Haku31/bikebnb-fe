@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 import '../assets/styles/pages/LoginPage.css';
 
@@ -13,66 +14,67 @@ function LoginPage(){
     const [currentPassword, setCurrentPassword] = useState('');
 
     const handleClick = e => {
-        if(e.target.outerText === 'Sign Up') {
+        if(e.target.innerText === 'Sign Up') {
             /////////////////////////////////
             //REDIRECT TO SIGN UP PAGE HERE//
             /////////////////////////////////
-            console.log('REDIRECT TO SIGN UP PAGE')
-            return 0;
-        }
-        e.preventDefault();
+            console.log('REDIRECT TO SIGN UP PAGE');
+        } else {
+            e.preventDefault();
 
-        setEmailErrorMessage('');
-        setPasswordErrorMessage('');
-        setEmailErrorVisibility('hidden');
-        setPasswordErrorVisibility('hidden');
-
-        // Validations
-
-        let emailIsValid = true;
-        let passwordIsValid = true;
-
-        let emailHasAnAt = false;
-        let emailHasADomain = true;
-        currentEmail.split('').forEach((char, index, arr) => {
-            if(char === '@'){
-                emailHasAnAt = true;
+            setEmailErrorMessage('');
+            setPasswordErrorMessage('');
+            setEmailErrorVisibility('hidden');
+            setPasswordErrorVisibility('hidden');
+    
+            // Validations
+    
+            let emailIsValid = true;
+            let passwordIsValid = true;
+    
+            let emailHasAnAt = false;
+            let emailHasADomain = true;
+            currentEmail.split('').forEach((char, index, arr) => {
+                if(char === '@'){
+                    emailHasAnAt = true;
+                }
+                if(arr.indexOf('@') === arr.length - 1){
+                    emailHasADomain = false;
+                }
+            })
+            if(currentEmail === ''){
+                emailIsValid = false;
+                setEmailErrorMessage('Please enter your email');
+                setEmailErrorVisibility('visible');
+            } else if(!emailHasAnAt){
+                emailIsValid = false;
+                setEmailErrorMessage('Invalid email, please add an @ to the email');
+                setEmailErrorVisibility('visible');
+            } else if(!emailHasADomain){
+                emailIsValid = false;
+                setEmailErrorMessage('Invalid email, add a domain next to the @');
+                setEmailErrorVisibility('visible');
             }
-            if(arr.indexOf('@') === arr.length - 1){
-                emailHasADomain = false;
+    
+            if(currentPassword.length < 4){
+                passwordIsValid = false;
+                if(currentPassword === ''){
+                    setPasswordErrorMessage('Please enter your password');
+                    setPasswordErrorVisibility('visible');
+                } else {
+                    setPasswordErrorMessage('Invalid password, the password is too short');
+                    setPasswordErrorVisibility('visible');
+                }  
             }
-        })
-        if(currentEmail === ''){
-            emailIsValid = false;
-            setEmailErrorMessage('Please enter your email');
-            setEmailErrorVisibility('visible');
-        } else if(!emailHasAnAt){
-            emailIsValid = false;
-            setEmailErrorMessage('Invalid email, please add an @ to the email');
-            setEmailErrorVisibility('visible');
-        } else if(!emailHasADomain){
-            emailIsValid = false;
-            setEmailErrorMessage('Invalid email, add a domain next to the @');
-            setEmailErrorVisibility('visible');
+    
+            if(emailIsValid && passwordIsValid){
+                /////////////////////////////
+                //REDIRECT TO HOMEPAGE HERE//
+                /////////////////////////////
+                console.log('REDIRECT TO HOMEPAGE')
+            }
         }
-
-        if(currentPassword.length < 4){
-            passwordIsValid = false;
-            if(currentPassword === ''){
-                setPasswordErrorMessage('Please enter your password');
-                setPasswordErrorVisibility('visible');
-            } else {
-                setPasswordErrorMessage('Invalid password, the password is too short');
-                setPasswordErrorVisibility('visible');
-            }  
-        }
-
-        if(emailIsValid && passwordIsValid){
-            /////////////////////////////
-            //REDIRECT TO HOMEPAGE HERE//
-            /////////////////////////////
-            console.log('REDIRECT TO HOMEPAGE')
-        }
+        
 
     }
 
@@ -85,6 +87,10 @@ function LoginPage(){
     }
 
     return(
+        <>
+        <Helmet>
+            <title>BikeBnb - Login</title>
+        </Helmet>
         <div className="login-form-container">
             <form className="login-form">
                 <fieldset className="login-login-fieldset">
@@ -107,6 +113,8 @@ function LoginPage(){
                 </fieldset>
             </form>
         </div>
+        </>
+        
     )
 }
 
